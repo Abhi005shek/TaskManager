@@ -46,7 +46,7 @@ A full-stack collaborative task management application with real-time updates, b
    
    Configure your `.env` file:
    ```env
-   DATABASE_URL="mongodb://username:password@localhost:27017/taskmanager"
+   DATABASE_URL="mongodb://<username>:<password>@localhost:27017/taskmanager"
    JWT_SECRET="your-super-secret-jwt-key"
    CLIENT_URL="http://localhost:3000"
    PORT=5000
@@ -54,7 +54,7 @@ A full-stack collaborative task management application with real-time updates, b
 
 4. Set up the database:
    ```bash
-   npx prisma migrate dev
+   npx prisma db push
    npx prisma generate
    ```
 
@@ -79,7 +79,7 @@ The backend will be available at `http://localhost:5000`
 
 3. Set up environment variables:
    ```bash
-   cp .env.example .env
+   cp .env
    ```
 
 4. Configure your `.env` file:
