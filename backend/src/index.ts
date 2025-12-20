@@ -15,7 +15,10 @@ const app = express();
 const httpServer = createServer(app);
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: [
+    process.env.CLIENT_URL || 'http://localhost:3000',
+    /\.vercel\.app$/
+  ],
   credentials: true,
 }));
 app.use(express.json());
@@ -28,7 +31,10 @@ app.use('/api/v1/notifications', notificationRouter)
 
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: [
+      process.env.CLIENT_URL || 'http://localhost:3000',
+      /\.vercel\.app$/
+    ],
     methods: ['GET', 'POST'],
     credentials: true,
   },
