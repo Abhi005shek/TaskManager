@@ -42,7 +42,7 @@ const Profile = () => {
 
   const updateProfileMutation = useMutation({
     mutationFn: async (data: { name: string }) => {
-      const response = await fetch('/api/v1/users/me', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'}/api/v1/users/me`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
