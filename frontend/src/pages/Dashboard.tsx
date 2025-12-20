@@ -12,7 +12,9 @@ const Dashboard = () => {
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    const newSocket = io('http://localhost:5000')
+    const newSocket = io(import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000', {
+      withCredentials: true,
+    })
     setSocket(newSocket)
 
     newSocket.on('task:updated', (updatedTask: Task) => {
