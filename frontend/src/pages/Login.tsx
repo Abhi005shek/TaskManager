@@ -48,10 +48,19 @@ const queryClient = useQueryClient()
       
       return responseData
     },
-    onSuccess: () => {
-      console.log('Login successful, navigating to dashboard')
-       queryClient.invalidateQueries({ queryKey: ['currentUser'] })
-       navigate('/dashboard')
+    onSuccess: async () => {
+      // console.log('Login successful, navigating to dashboard')
+      //  queryClient.invalidateQueries({ queryKey: ['currentUser'] })
+      //  navigate('/dashboard')
+
+      await queryClient.invalidateQueries({ 
+    queryKey: ['currentUser'], 
+    refetchType: 'all'
+  });
+  const user = queryClient.getQueryData(['currentUser']);
+  console.log('User after login:', user);
+  console.log('Navigating to dashboard...');
+  navigate('/dashboard');
     },
     onError: (error) => {
       console.error('Login error:', error)
